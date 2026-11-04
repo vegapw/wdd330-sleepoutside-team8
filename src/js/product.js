@@ -6,7 +6,7 @@ const dataSource = new ProductData("tents");
 
 //function addProductToCart(product) {
 //  setLocalStorage("so-cart", product);
-//}
+//
 // change to fix that there was not an array
 function addProductToCart(product) {
   const cartItems = getLocalStorage("so-cart") || [];
