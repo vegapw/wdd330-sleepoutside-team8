@@ -30,11 +30,36 @@ export function getParam(param){
   return value;
 }
 
-//
+//Rendering a dynamic list
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false){
   const htmlStrings = list.map(templateFn);
   if (clear){
     parentElement.innerHtml = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+//Rendering a template
+export function renderWithTemplate(template, parentElement, data, callback){
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  }
+}
+
+//Load template from a path
+async function loadTemplate(path){
+  const resp = await fetch(path);
+  const template = await resp.text();
+  return template;
+}
+
+//Load header and footer from templates
+export async function loadHeaderFooter(){
+  const headerTemp = await loadTemplate("../partials/header.html");
+  const footerTemp = await loadTemplate("../partials/footer.html");
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+  renderWithTemplate(headerTemp, headerElement);
+  renderWithTemplate(footerTemp, footerElement);
 }
