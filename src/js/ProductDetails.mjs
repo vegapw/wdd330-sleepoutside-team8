@@ -16,9 +16,20 @@ export default class ProductDetails {
     document.getElementById("addToCart")
     .addEventListener("click", this.addProductToCart.bind(this));
   }
-  addProductToCart(){
+  addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+
+    const existingProduct = cartItems.find(
+      (item) => item.Id === this.product.Id,
+    );
+
+    if (existingProduct) {
+      existingProduct.Quantity = (existingProduct.Quantity || 1) + 1;
+    } else {
+      this.product.Quantity = 1;
+      cartItems.push(this.product);
+    }
+
     setLocalStorage("so-cart", cartItems);
   }
   renderProductDetails(){
@@ -31,7 +42,7 @@ function productDetailsTemplate (product){
   document.querySelector("h2").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("productImage");
-  productImage.src = product.Image;
+  productImage.src = product.Images.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
 
   document.getElementById("productPrice").textContent = product.FinalPrice;
