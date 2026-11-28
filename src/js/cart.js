@@ -10,7 +10,13 @@ function renderCartContents() {
     : [`<li><h3>No items to display!</h3></li>`];
 
   document.querySelector(".cart-list").innerHTML = htmlItems.join("");
+  const subtotal = cartItems.reduce(
+    (total, item) => total + Number(item.FinalPrice) * (item.Quantity || 1),
+    0,
+  );
 
+  document.querySelector(".cart-total").textContent =
+    `$${subtotal.toFixed(2)}`;
   addQuantityListeners();
 }
 

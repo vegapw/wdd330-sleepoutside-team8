@@ -544,6 +544,165 @@ button {
   border-bottom: 1px solid var(--primary-color);
 }
 
+/* Cart Checkout Button */
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border-top: 1px solid #ccc;
+}
+
+.cart-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: #505b0b;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.checkout-button:hover {
+  background-color: var(--tertiary-color);
+  border-color: var(--tertiary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-button:focus-visible {
+  outline: 3px solid #333;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .cart-footer {
+    align-items: stretch;
+  }
+
+  .checkout-button {
+    width: 100%;
+  }
+}
+
+/* Form Styles */
+/* Checkout page */
+.checkout {
+  max-width: 750px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.checkout h2 {
+  margin-bottom: 1.5rem;
+}
+
+.checkout fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.checkout legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.checkout label {
+  font-weight: 600;
+}
+
+.checkout input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.order-summary {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background-color: #f5f5f0;
+  border-radius: 6px;
+}
+
+.order-summary h3 {
+  margin-bottom: 1rem;
+}
+
+.order-summary p {
+  margin: 0.5rem 0;
+}
+
+#order-total {
+  font-weight: bold;
+}
+
+#checkout-message {
+  margin: 1rem 0;
+  color: #356b25;
+  font-weight: bold;
+  text-align: center;
+}
+
+#place-order {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.9rem 2rem;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: #505b0b;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#place-order:hover {
+  background-color: var(--tertiary-color);
+  border-color: var(--tertiary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+#place-order:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .checkout {
+    padding: 1rem;
+  }
+
+  .checkout fieldset {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive cart */
 
 @media screen and (max-width: 600px) {
