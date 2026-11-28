@@ -63,3 +63,34 @@ export async function loadHeaderFooter(){
   renderWithTemplate(headerTemp, headerElement);
   renderWithTemplate(footerTemp, footerElement);
 }
+
+
+// Display a dismissible alert message
+export function alertMessage(message, scroll = true, type = "success") {
+  const main = document.querySelector("main");
+
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+
+  if (type === "error") {
+    alert.classList.add("alert-error");
+  }
+  const messageText = document.createElement("p");
+  messageText.textContent = message;
+
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.textContent = "×";
+  closeButton.setAttribute("aria-label", "Close alert");
+
+  closeButton.addEventListener("click", () => {
+    alert.remove();
+  });
+
+  alert.append(messageText, closeButton);
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}

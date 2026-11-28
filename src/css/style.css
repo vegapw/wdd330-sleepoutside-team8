@@ -45,13 +45,13 @@ p {
   width: 245px;
   overflow: hidden;
   display: flex;
-  font-size: 30px;
+  font-size: 40px;
   text-align: right;
   font-family: var(--font-headline);
 }
 
 .logo img {
-  width: 60px;
+  width: 70px;
   height: 60px;
 }
 
@@ -85,8 +85,8 @@ p {
 }
 
 .logo--square img {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   margin-top: -1.3em;
 }
 
@@ -124,7 +124,7 @@ button {
 }
 
 .cart svg {
-  width: 25px;
+  width: 45px;
 }
 
 .cart:hover svg {
@@ -748,6 +748,82 @@ button {
     text-align: left;
   }
 }
+/* Alert Styles */
+/* Custom Alert Messages */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  padding: 0.1rem 1rem;
+  border: 1px solid #d6e2c5;
+  border-left: 5px solid #687b35;
+  border-radius: 8px;
+  background-color: #f3f7ed;
+  color: #34451d;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  animation: alertSlideIn 0.25s ease-out;
+}
+
+.alert p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.alert button {
+  flex-shrink: 0;
+  width: 20px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #536b27;
+  font-size: 1.9rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Error Alert Messages */
+.alert-error {
+  border-color: #f1bcbc;
+  border-left-color: #c62828;
+  background-color: #fdecec;
+  color: #8b1e1e;
+}
+
+.alert-error button {
+  color: #a32121;
+}
+
+/* Animation for Icon */
+
+.cart-icon.cart-bounce {
+  animation: cartBounce 0.6s ease;
+}
+
+@keyframes cartBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  25% {
+    transform: translateY(-8px) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(8deg);
+  }
+
+  75% {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+}
+
+/* Footer Styles */
 
 footer {
   text-align: center;

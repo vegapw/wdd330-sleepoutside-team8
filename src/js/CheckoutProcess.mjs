@@ -86,19 +86,24 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
-    this.calculateOrderTotal();
+        try {
+            this.calculateOrderTotal();
 
-    const order = formDataToJSON(form);
+            const order = formDataToJSON(form);
 
-    order.orderDate = new Date().toISOString();
-    order.items = this.packageItems(this.list);
-    order.orderTotal = this.orderTotal.toFixed(2);
-    order.shipping = this.shipping;
-    order.tax = this.tax.toFixed(2);
+            order.orderDate = new Date().toISOString();
+            order.items = this.packageItems(this.list);
+            order.orderTotal = this.orderTotal.toFixed(2);
+            order.shipping = this.shipping;
+            order.tax = this.tax.toFixed(2);
 
-    const externalServices = new ExternalServices();
+            const externalServices = new ExternalServices();
 
-    return externalServices.checkout(order);
-  }
+            return await externalServices.checkout(order);
+        } catch (error) {
+            console.error("Checkout error:", error);
+            throw error;
+      }
+    }
 }
 

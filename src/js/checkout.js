@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
@@ -14,7 +14,6 @@ zipInput.addEventListener("input", () => {
 
 const form = document.querySelector("#checkout-form");
 
-const message = document.querySelector("#checkout-message");
 const submitButton = document.querySelector("#place-order");
 
 form.addEventListener("submit", async (event) => {
@@ -22,18 +21,23 @@ form.addEventListener("submit", async (event) => {
 
   submitButton.disabled = true;
   submitButton.textContent = "Processing...";
-  message.textContent = "Processing your order...";
 
   try {
     const response = await checkout.checkout(form);
 
-    message.textContent =
-      `Order Placed Successfully! Order #${response.orderId}`;
+    localStorage.setItem("orderId", response.orderId);
 
-    submitButton.textContent = "Order Placed";
-  } catch {
-    message.textContent =
-      "Something went wrong. Please try again.";
+    localStorage.removeItem("so-cart");
+
+    window.location.href = "./success.html";
+  } catch (error) {
+
+    const errorMessage =
+      error.message && typeof error.message === "object"
+        ? Object.values(error.message).join(", ")
+        : error.message || "Something went wrong. Please try again.";
+
+    alertMessage(errorMessage, true, "error");
 
     submitButton.disabled = false;
     submitButton.textContent = "Place Your Order";
